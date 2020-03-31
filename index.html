@@ -12,7 +12,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Plato Bootstrap Template - Index</title>
+  <title>PH Quarantine Quiz</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -43,6 +43,7 @@
     <section id="hero">
       <div class="hero-container">
         <h1 id="question">🏷+ 👁+👔= </h1>
+		<h2 id="correctAnswerContainer" >Correct answer is: <div id="correctAnswer" style="color: red"></div></h2>
 		<h2><input id="answer" type="text" placeholder="Answer"/></h2>
         <a href="#submit" id="submitButton" class="btn-get-started scrollto">Submit</a>
       </div>
@@ -65,7 +66,6 @@
   <script src="assets/vendor/venobox/venobox.min.js"></script>
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
-  <script src='https://codepen.io/rikschennink/pen/amxZqR.js'></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
@@ -104,7 +104,7 @@
 		{ "id":"18", "question":"P🅰️+ ⚖️+1️⃣ =", "answer": "palawan" },
 		{ "id":"19", "question":" 🧥+🅰️+🦇+🅾️ = ", "answer": "cotabato" },
 		{ "id":"20", "question":"🤴+ Q +🚪+🐀 = ", "answer": "sultan kudarat" },
-		{ "id":"21", "question":" 🏹+🏫=", "answer": "" },
+		{ "id":"21", "question":" 🏹+🏫=", "answer": "bohol" },
 		{ "id":"22", "question":" 📬+🆎+🦴 ", "answer": "malabon" },
 		{ "id":"23", "question":" 🆎+👙=", "answer": "abra" },
 		{ "id":"24", "question":" 🧢+ ☮️=", "answer": "capiz" },
@@ -113,13 +113,14 @@
 		{ "id":"27", "question":"  🍫+👠= ", "answer": "chocolate hills" },
 		{ "id":"28", "question":"🛳⚓️+👨🏻‍⚕️+🔑=", "answer": "marinduque" },
 		{ "id":"29", "question":" 🐜+☕️+🔑=", "answer": "antique" },
-		{ "id":"30", "question":"🕊+🤵💍👰🏻=", "answer": "davai" },
+		{ "id":"30", "question":"🕊+🤵💍👰🏻=", "answer": "davao" },
 		{ "id":"31", "question":" 🆕+🕸+🅰️, 🐝🐝🐝, K + 👁 +🅰️=", "answer": "nueva vizcaya" },
 		{ "id":"32", "question":" 🏷+💵+®️+🏃🏻‍♂️=", "answer": "tagbilaran" },
 	  ]
 	 }
 	 
 	$( document ).ready(function() {
+		$("#correctAnswerContainer").hide();
 		// Load data
 		for (i in myObj.questions) {
 		  questions[totalQuestions] = myObj.questions[i].question;
@@ -156,6 +157,8 @@
 		$("#question").text("Your score is :" + currentScore);
 		$("#submitButton").hide();
 		$("#answer").hide();
+		$("#correctAnswerContainer").show();
+		$("#correctAnswer").text(answer[currentQuestion].toLowerCase());
 	}
 	
 	function setRandomQuestion() {
