@@ -42,8 +42,8 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
       <div class="hero-container">
-        <h1>🏷+ 👁+👔= </h1>
-		<h2><input id="answer" type="text" placeholder="Type for pixie dust..."/></h2>
+        <h1 id="question">🏷+ 👁+👔= </h1>
+		<h2><input id="answer" type="text" placeholder="Answer"/></h2>
         <a href="#submit" id="submitButton" class="btn-get-started scrollto">Submit</a>
       </div>
     </section><!-- End Hero -->
@@ -75,6 +75,59 @@
   <script>
 	var currentScore = 0;
 	var currentRetries = 0;
+	var questions = [];
+	var answer = [];
+	var totalQuestions = 0;
+	var currentQuestion;
+	
+	var myObj = {
+	  "name":"Quiz",
+	  "age":30,
+	  "questions": [
+		{ "id":"1", "question":"🏷+ 👁 + 👔 =", "answer": "tagaytay" },
+		{ "id":"2", "question":"🐝+🆒= ", "answer": "bicol" },
+		{ "id":"3", "question":"🏀+🅰️+🥫= ", "answer": "bulacan" },
+		{ "id":"4", "question":"🐞+ U =", "answer": "baguio" },
+		{ "id":"5", "question":"🏹+🧗‍♂️+👁=", "answer": "boracay" },
+		{ "id":"6", "question":"T+®️+🔐= ", "answer": "tarlac" },
+		{ "id":"7", "question":"📷 + Ⓜ️E+ 📈= ", "answer": "camiguin" },
+		{ "id":"8", "question":"+👅+ ⛽️= ", "answer": "batangas" },
+		{ "id":"9", "question":"🔑+🦏=", "answer": "quirino" },
+		{ "id":"10", "question":" 👻+2️⃣+1️⃣= ", "answer": "butuan" },
+		{ "id":"11", "question":" 🅰️+👨‍👩‍👦‍👦👨‍👩‍👧👪👨‍👩‍👧‍👦=", "answer": "aklan" },
+		{ "id":"12", "question":" ❄️+🅰️+🛎+🅰️=", "answer": "isabela" },
+		{ "id":"13", "question":"🐝+ 🔫=", "answer": "vigan" },
+		{ "id":"14", "question":"⛰+🆙+💩=", "answer": "mt apo" },
+		{ "id":"15", "question":" 🔙+🅾️+🔊= ", "answer": "bacolod" },
+		{ "id":"16", "question":"🏷 + 🎸🎹🎤= ", "answer": "taguig" },
+		{ "id":"17", "question":" 🐜+☕️+👕= ", "answer": "antipolo" },
+		{ "id":"18", "question":"P🅰️+ ⚖️+1️⃣ =", "answer": "palawan" },
+		{ "id":"19", "question":" 🧥+🅰️+🦇+🅾️ = ", "answer": "cotabato" },
+		{ "id":"20", "question":"🤴+ Q +🚪+🐀 = ", "answer": "sultan kudarat" },
+		{ "id":"21", "question":" 🏹+🏫=", "answer": "" },
+		{ "id":"22", "question":" 📬+🆎+🦴 ", "answer": "malabon" },
+		{ "id":"23", "question":" 🆎+👙=", "answer": "abra" },
+		{ "id":"24", "question":" 🧢+ ☮️=", "answer": "capiz" },
+		{ "id":"25", "question":" 👀 + 👻= ", "answer": "cebu" },
+		{ "id":"26", "question":" 🚘 + 🐮 + 1️⃣=", "answer": "caramoan" },
+		{ "id":"27", "question":"  🍫+👠= ", "answer": "chocolate hills" },
+		{ "id":"28", "question":"🛳⚓️+👨🏻‍⚕️+🔑=", "answer": "marinduque" },
+		{ "id":"29", "question":" 🐜+☕️+🔑=", "answer": "antique" },
+		{ "id":"30", "question":"🕊+🤵💍👰🏻=", "answer": "davai" },
+		{ "id":"31", "question":" 🆕+🕸+🅰️, 🐝🐝🐝, K + 👁 +🅰️=", "answer": "nueva vizcaya" },
+		{ "id":"32", "question":" 🏷+💵+®️+🏃🏻‍♂️=", "answer": "tagbilaran" },
+	  ]
+	 }
+	 
+	$( document ).ready(function() {
+		// Load data
+		for (i in myObj.questions) {
+		  questions[totalQuestions] = myObj.questions[i].question;
+		  answer[totalQuestions] = myObj.questions[i].answer;
+		  totalQuestions++;
+		}
+		setRandomQuestion();
+	});
 	
 	
 	
@@ -90,7 +143,25 @@
 	});
 	
 	function validateAnswer() {
-	  	  alert($("#answer").val());
+	  	if ($("#answer").val().toLowerCase().includes(answer[currentQuestion].toLowerCase())){
+			currentScore++;
+			setRandomQuestion();
+		}else{
+			gameOver();
+		}
+		$("#answer").val("");
+	}
+	
+	function gameOver() {
+		$("#question").text("Your score is :" + currentScore);
+		$("#submitButton").hide();
+		$("#answer").hide();
+	}
+	
+	function setRandomQuestion() {
+	  	currentQuestion = Math.floor(Math.random() * totalQuestions);
+		//alert(questions[currentQuestion] + answer[currentQuestion]);
+		$("#question").text(questions[currentQuestion]);
 	}
 	
   </script>
